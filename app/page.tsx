@@ -1,39 +1,56 @@
-import Image from "next/image"
-
-
+import Image from 'next/image'
+import Link from 'next/link'
+const url_60='https://api.deezer.com/playlist/908622995'
+const url_70='https://api.deezer.com/playlist/1405240385'
+const url_80='https://api.deezer.com/playlist/7141658344'
+const url_90='https://api.deezer.com/playlist/8027597282'
+const url_jazz='https://api.deezer.com/playlist/1615514485'
 async function getData() {
-  const res = await fetch('https://api.deezer.com/playlist/908622995')
+  try {
+    const res = await fetch(url_60)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+
+    const data = await res.json()
+
+    if (!data) {
+      throw new Error('Empty response')
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    throw error
   }
-
-  return res.json()
 }
 
 export default async function Home() {
-  const { tracks } = await getData()
-  console.log(tracks.data[0].artist.name)
+  const { tracks, title } = await getData()
 
   return (
-    <main className='w-full flex min-h-screen  flex-wrap  items-center justify-center p-24 gap-4'>
+    <>
+    <h1 className='text-2xl text-center mt-4'>{title}</h1>
+    <main className='w-full flex min-h-screen  flex-wrap  items-center justify-center px-24 py-8 gap-4'>
+      
       {tracks.data.map((track: any) => (
-        <div key={track.id} className="w-[200px] h-[250px] shadow-lg p-2">
+        <div
+          key={track.id}
+          className='w-[200px] h-[300px] shadow-lg p-2 '
+        >
           <Image
-             src={track.album.cover}
-             alt="album cover"
-             width={160}
-             height={160}
+            src={track.album.cover}
+            alt='album cover'
+            width={160}
+            height={160}
           />
-          <div>
-            {track.artist.name}
-            </div>
-          <div>
-            {track.title}
-            </div>
-
+          <div className='mt-2'>{track.artist.name}</div>
+          <div>{track.title}</div>
+          <Link className='text-blue-400' href={`/play?track=${track.preview}&image=${track.album.cover}`}>Listen to the song</Link>
         </div>
       ))}
     </main>
+    </>
   )
 }

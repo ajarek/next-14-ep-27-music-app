@@ -1,0 +1,56 @@
+
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+
+
+
+interface Props {
+  searchParams: {
+    track: string
+    image:string
+  }
+}
+
+
+
+const Page = ({ searchParams }: Props) => {
+  const params = new URLSearchParams(searchParams)
+  const track = params.get('track')
+  if (track) {
+    return (
+      <div className='min-h-screen flex flex-col justify-center items-center gap-4 '>
+          <div className='w-[300px] h-[300px] rounded-full overflow-hidden motion-safe:animate-spin'>
+            <Image
+            src={params.get('image')}
+            alt='album cover'
+            width={300}
+            height={300}
+
+            />
+          </div>
+        <audio
+          controls
+          autoPlay
+          src={track}
+          loop
+        ></audio>
+        <p>
+          Go back to the{' '}
+          <Link
+            className='underline text-green-700 text-xl'
+            href='/'
+          >
+            Home
+          </Link>
+        </p>
+      </div>
+    )
+  }
+
+  return <div>Missing track parameter</div>
+}
+
+export default Page
+
+  
