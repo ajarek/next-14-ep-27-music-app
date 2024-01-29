@@ -25,9 +25,7 @@ const Navbar = () => {
         <Link href={'/'} className='btn btn-ghost text-xl'>Best Music Ever</Link>
       </div>
       <div className=' w-1/2 flex-none justify-evenly '>
-        <Link href='/year1960' className='btn btn-square btn-ghost text-xl'>
-          1960
-        </Link>
+        
         <Link href='/year1970' className='btn btn-square btn-ghost text-xl'>
           1970
         </Link>
