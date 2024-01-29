@@ -31,13 +31,13 @@ export default async function Home() {
 
   return (
     <>
-    <h1 className='text-2xl text-center mt-4'>{title}</h1>
+    <h1 className='text-2xl text-center text-secondary font-bold mt-4'>{title}</h1>
     <main className='w-full flex min-h-screen  flex-wrap  items-center justify-center px-24 py-8 gap-4'>
       
       {tracks.data.map((track: any) => (
         <div
           key={track.id}
-          className='w-[200px] h-[300px] shadow-lg p-2 '
+          className='w-[200px] h-[300px] shadow-xl p-2 border border-secondary rounded-lg '
         >
           <Image
             src={track.album.cover}
@@ -45,8 +45,8 @@ export default async function Home() {
             width={160}
             height={160}
           />
-          <div className='mt-2'>{track.artist.name}</div>
-          <div>{track.title}</div>
+          <div className='mt-2 text-secondary font-bold'>{track.artist.name}</div>
+          <div className='text-secondary'>{track.title}</div>
           <Link className='text-blue-400' href={`/play?track=${track.preview}&image=${track.album.cover}`}>Listen to the song</Link>
         </div>
       ))}

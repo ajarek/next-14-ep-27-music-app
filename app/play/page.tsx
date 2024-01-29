@@ -38,7 +38,7 @@ const Page = ({ searchParams }: Props) => {
         <p>
           Go back to the{' '}
           <Link
-            className='underline text-green-700 text-xl'
+            className='link link-accent text-xl'
             href='/'
           >
             Home
