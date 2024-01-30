@@ -22,7 +22,7 @@ const ListMusic = ({ tracks }: { tracks: any[] }) => {
               <div className='mt-2 text-secondary font-bold'>
                 {track.artist.name}
               </div>
-              <div className='text-secondary'>{track.title}</div>
+              <div className='text-secondary'>{(track.title).slice(0, 30)}</div>
             </div>
           </Link>
         </>
