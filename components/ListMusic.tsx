@@ -17,7 +17,7 @@ const ListMusic = ({ tracks }: { tracks: any[] }) => {
                 alt='album cover'
                 width={160}
                 height={160}
-                style={{width:'100%', height:'auto'}}
+                style={{ width: '100%', height: 'auto' }}
               />
               <div className='mt-2 text-secondary font-bold'>
                 {track.artist.name}
@@ -30,6 +30,5 @@ const ListMusic = ({ tracks }: { tracks: any[] }) => {
     </div>
   )
 }
-
 
 export default ListMusic

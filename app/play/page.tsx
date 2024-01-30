@@ -6,18 +6,15 @@ import NotFound from '../not-found'
 interface Props {
   searchParams: {
     track: string
-    image: string
+    image: string 
     artist: string
     title: string
   }
 }
 
 const Page = ({ searchParams }: Props) => {
-  const params = new URLSearchParams(searchParams)
-  const track = params.get('track')
-  const img = params.get('image')
-  const artist = params.get('artist')
-  const title = params.get('title')
+  const { track, image, artist, title } = searchParams;
+
   if (track) {
     return (
       <div className='min-h-[calc(100vh-80px)] flex flex-col justify-start items-center gap-4 mt-4'>
@@ -25,7 +22,7 @@ const Page = ({ searchParams }: Props) => {
         <p className='text-secondary '>{title}</p>
         <div className='w-[300px] h-[300px] rounded-full overflow-hidden motion-safe:animate-spin'>
           <Image
-            src={img}
+            src={image}
             alt='album cover'
             width={300}
             height={300}
@@ -48,12 +45,10 @@ const Page = ({ searchParams }: Props) => {
           </Link>
         </p>
       </div>
-    )
-  }else{
-    return   NotFound()
+    );
+  } else {
+    return <NotFound />;
   }
-
- 
 }
 
 export default Page
