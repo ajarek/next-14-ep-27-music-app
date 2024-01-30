@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import NotFound from '../not-found'
 
 interface Props {
   searchParams: {
@@ -48,9 +49,11 @@ const Page = ({ searchParams }: Props) => {
         </p>
       </div>
     )
+  }else{
+    return   NotFound()
   }
 
-  return <div>Missing track parameter</div>
+ 
 }
 
 export default Page
